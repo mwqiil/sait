@@ -1,1 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Современный веб-сайт</title>
+    <style>
+        :root {
+            --main-color: #4a6fa5;
+            --secondary-color: #166088;
+            --font-size: 16px;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size);
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: var(--main-color);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ffd166;
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffc233;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            margin-bottom: 1rem;
+        }
+
+        .feature-card::before {
+            content: "→";
+            color: var(--main-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .testimonials {
+            background-color: #e8e8e8;
+            padding: 3rem 0;
+        }
+
+        .testimonial-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .testimonial {
+            flex: 1 1 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial:nth-child(odd) {
+            background-color: var(--main-color);
+            color: white;
+        }
+
+        .testimonial::after {
+            content: """;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-form {
+            padding: 3rem 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--main-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            background-color: var(--main-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --font-size: 14px;
+            }
+
+            .feature-card {
+                padding: 1rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero animated">
+        <div class="container">
+            <h1>Добро пожаловать на наш сайт</h1>
+            <p>Мы предлагаем инновационные решения для вашего бизнеса, помогая достигать новых высот в цифровом мире.</p>
+            <a href="#" class="btn">Узнать больше</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Наши преимущества</h2>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <h3>Качество</h3>
+                    <p>Мы гарантируем высочайшее качество всех наших продуктов и услуг.</p>
+                    <a href="#">Подробнее</a>
+                </article>
+                <article class="feature-card">
+                    <h3>Надежность</h3>
+                    <p>Наши решения проверены временем и тысячами довольных клиентов.</p>
+                    <a href="#">Подробнее</a>
+                </article>
+                <article class="feature-card">
+                    <h3>Инновации</h3>
+                    <p>Мы постоянно развиваемся и внедряем самые современные технологии.</p>
+                    <a href="#">Подробнее</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Отзывы наших клиентов</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Отличный сервис! Быстро и качественно выполнили все работы."</p>
+                    <strong>- Иван Петров</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Сотрудничаем уже несколько лет, всегда на высоте. Рекомендую!"</p>
+                    <strong>- Ольга Сидорова</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Профессиональный подход и индивидуальные решения. Спасибо!"</p>
+                    <strong>- Алексей Иванов</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" class="form-control" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Введите ваш email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" class="form-control" placeholder="Введите ваше сообщение" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Наша компания. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
